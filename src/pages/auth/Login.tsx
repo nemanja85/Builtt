@@ -68,7 +68,7 @@ export default function Login() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center items-center rounded-2xl bg-black px-3 py-1.5 text-lg leading-4 text-white shadow-sm"
+              className="flex w-full justify-center items-center h-11 rounded-2xl  text-white bg-black py-1.5 text-lg leading-4 hover:text-black hover:bg-white hover:border hover:border-black"
             >
               Prijavi se na nalog
             </button>
