@@ -46,7 +46,7 @@ export default function Login() {
                 id="email"
                 {...register('email')}
                 type="email"
-                className="block w-full border-b border-b-gray-400 py-1.5 text-gray-900 placeholder:text-gray-400 focus:border-b-black sm:text-sm sm:leading-6"
+                className="block w-full border-b border-b-gray-400 py-1.5 text-base text-gray-900 placeholder:text-middleGray focus:border-b-middleGray"
               />
               <p className="pt-2 text-base text-red-500 font-weight">{errors.email?.message}</p>
             </div>
@@ -60,7 +60,7 @@ export default function Login() {
                 id="password"
                 {...register('password')}
                 type="password"
-                className="block w-full border-b border-b-gray-400 py-1.5 text-gray-900 placeholder:text-gray-400 focus:border-b-black sm:text-sm sm:leading-6"
+                className="block w-full border-b border-b-gray-400 py-1.5 text-base text-black placeholder:text-middleGray focus:border-b-middleGray"
               />
               <p className="pt-2 text-base text-red-500 font-weight">{errors.password?.message}</p>
             </div>
