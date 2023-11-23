@@ -6,7 +6,7 @@ const AppLayout: FC = ({ children }) => {
   return (
     <>
       <header>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full px-8 py-4 bg-ligthGray">
           <img src={logo} alt="Logo" />
           <img src={cart} alt="Cart" />
         </div>
