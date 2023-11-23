@@ -1,3 +1,5 @@
+import Light_Cart from '../../public/products/Light_Cart.png';
+
 type ProductItemProps = {
   id: number;
   imageUrl: string;
@@ -32,7 +34,55 @@ const ProductItem = () => {
                   loading="lazy"
                   className="aspect-[16/9] w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-gray-900/10"></div>
+                <div className="absolute bottom-2 left-2">
+                  <button className="inline-flex items-center justify-between h-10 px-3 mr-1 bg-white border border-black rounded-2xl">
+                    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_8_64)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M14.6304 8.66502H0V7.33499H14.6304V8.66502Z"
+                          fill="black"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_8_64">
+                          <rect width="14.6304" height="14.6304" fill="white" transform="translate(0 0.684814)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <span className="px-4">0</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_8_67)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M15.2607 8.66502H0.630371V7.33499H15.2607V8.66502Z"
+                          fill="black"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M7.28056 15.3152L7.28056 0.684814L8.6106 0.684814L8.6106 15.3152L7.28056 15.3152Z"
+                          fill="black"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_8_67">
+                          <rect
+                            width="14.6304"
+                            height="14.6304"
+                            fill="white"
+                            transform="translate(0.630371 0.684814)"
+                          />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </button>
+                  <button className="p-2 bg-black rounded-full">
+                    <img src={Light_Cart} alt="cart icon" />
+                  </button>
+                </div>
               </div>
               <div className="max-w-xl">
                 <div className="relative group">
