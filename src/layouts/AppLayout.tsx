@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import cart from '../../public/header/Cart.png';
 import logo from '../../public/header/Logo.png';
-
-const AppLayout: FC = () => {
+//@ts-ignore
+const AppLayout: FC = ({ children }) => {
   return (
     <>
       <header>
@@ -11,7 +11,7 @@ const AppLayout: FC = () => {
           <img src={cart} alt="Cart" />
         </div>
       </header>
-      <main></main>
+      <main>{children}</main>
     </>
   );
 };

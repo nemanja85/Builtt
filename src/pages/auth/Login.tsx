@@ -9,8 +9,8 @@ type LoginRequest = {
 };
 
 const schema = object().shape({
-  email: string().required('Email is required.').email('Invalid email address.'),
-  password: string().required('Password is required.').min(8, 'Password must be at least 8 characters.'),
+  email: string().required('Polje email je obavezno.').email('Neispravan format email adrese.'),
+  password: string().required('Polje lozinka je obavezno.').min(8, 'Polje lozinka mora da ima minimum 8 karaktera.'),
 });
 
 export default function Login() {
@@ -24,7 +24,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const onSubmit = (data: LoginRequest) => {
-    if (data.email == 'admin@admin.com' && data.password == 'admin12345') {
+    if (data.email === 'admin@admin.com' && data.password === 'admin12345') {
       return navigate('/shop');
     }
   };

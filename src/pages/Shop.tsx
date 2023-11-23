@@ -24,7 +24,7 @@ export default function Shop() {
                 </h3>
                 <p className="text-2xl leading-[34px] tracking-tight font-normal text-black mt-2">
                   546
-                  <span className="text-[13px] leading-4 font-normal pl-2">RSD</span>
+                  <sup className="text-[13px] leading-4 font-normal pl-2">RSD</sup>
                 </p>
               </div>
             </div>
@@ -47,7 +47,7 @@ export default function Shop() {
                 </h3>
                 <p className="text-2xl leading-[34px] tracking-tight font-normal text-black mt-2">
                   546
-                  <span className="text-[13px] leading-4 font-normal pl-2">RSD</span>
+                  <sup className="text-[13px] leading-4 font-normal pl-2">RSD</sup>
                 </p>
               </div>
             </div>
@@ -70,7 +70,7 @@ export default function Shop() {
                 </h3>
                 <p className="text-2xl leading-[34px] tracking-tight font-normal text-black mt-2">
                   546
-                  <span className="text-[13px] leading-4 font-normal pl-2">RSD</span>
+                  <sup className="text-[13px] leading-4 font-normal pl-2">RSD</sup>
                 </p>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function Shop() {
                 </h3>
                 <p className="text-2xl leading-[34px] tracking-tight font-normal text-black mt-2">
                   546
-                  <span className="text-[13px] leading-4 font-normal pl-2">RSD</span>
+                  <sup className="text-[13px] leading-4 font-normal pl-2">RSD</sup>
                 </p>
               </div>
             </div>

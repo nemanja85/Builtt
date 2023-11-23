@@ -44,11 +44,11 @@ export default function Cart() {
                 <div>
                   <p className="text-2xl leading-8 text-black">
                     {item.currentPrice}
-                    <span className="pl-2">RSD</span>
+                    <sup className="pl-2">RSD</sup>
                   </p>
                   <p className="text-base leading-[18px] text-orange-600 line-through pt-2">
                     {item.oldPrice}
-                    <span className="pl-2">RSD</span>
+                    <sup className="pl-2">RSD</sup>
                   </p>
                 </div>
               </article>
@@ -59,13 +59,13 @@ export default function Cart() {
                 <div className="flex flex-row justify-between">
                   <p className="text-base font-normal leading-7">Ukupno</p>
                   <p className="text-lg leading-[25px] font-normal">
-                    19940 <span className="pl-1 text-xs">RSD</span>
+                    19940 <sup className="pl-1 text-xs">RSD</sup>
                   </p>
                 </div>
                 <div className="flex flex-row justify-between">
                   <p className="text-base font-normal leading-7">Ušteda</p>
                   <p className="text-lg leading-[25px] font-normal">
-                    -1200 <span className="pl-1 text-xs">RSD</span>
+                    -1200 <sup className="pl-1 text-xs">RSD</sup>
                   </p>
                 </div>
                 <div className="flex flex-row justify-between pb-4 border-b border-b-black">
@@ -78,7 +78,7 @@ export default function Cart() {
                     <p className="text-xs font-normal">Cena je sa uključenim PDV-om</p>
                   </div>
                   <p className="text-lg leading-[25px] font-normal">
-                    19940 <span className="pl-1 text-xs">RSD</span>
+                    19940 <sup className="pl-1 text-xs">RSD</sup>
                   </p>
                 </div>
                 <button
