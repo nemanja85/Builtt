@@ -14,15 +14,15 @@ const router = createBrowserRouter([
         path: '/shop',
         element: <Shop />,
       },
-      {
-        path: '/cart',
-        element: <Cart />,
-      },
     ],
   },
   {
     path: '/auth/login',
     element: <Login />,
+  },
+  {
+    path: '/cart',
+    element: <Cart />,
   },
 ]);
 
