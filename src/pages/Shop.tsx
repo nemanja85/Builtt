@@ -4,7 +4,6 @@ import ProductItem from '../components/ProductItem';
 
 export default function Shop() {
   const products = useLoaderData() as GetProductResponse[];
-  console.log(products);
 
   return (
     <div className="py-20 bg-white">
