@@ -46,6 +46,50 @@ const CartItem = () => {
                       <p className="mt-1 text-sm leading-6 text-gray-600">{item.quantity}</p>
                     </div>
                     <div className="relative max-w-xl group">
+                      <button className="inline-flex items-center justify-between h-10 px-3 mr-4 bg-white border border-black rounded-2xl">
+                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_8_64)">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M14.6304 8.66502H0V7.33499H14.6304V8.66502Z"
+                              fill="black"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_8_64">
+                              <rect width="14.6304" height="14.6304" fill="white" transform="translate(0 0.684814)" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                        <span className="px-4">1</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_8_67)">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M15.2607 8.66502H0.630371V7.33499H15.2607V8.66502Z"
+                              fill="black"
+                            />
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M7.28056 15.3152L7.28056 0.684814L8.6106 0.684814L8.6106 15.3152L7.28056 15.3152Z"
+                              fill="black"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_8_67">
+                              <rect
+                                width="14.6304"
+                                height="14.6304"
+                                fill="white"
+                                transform="translate(0.630371 0.684814)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </button>
                       <button className="text-base font-normal leading-7 underline">Ukloni</button>
                     </div>
                   </div>
