@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import cart from '../../public/header/Cart.png';
 import logo from '../../public/header/Logo.png';
-//@ts-ignore
-const AppLayout: FC = ({ children }) => {
+
+const AppLayout = () => {
   return (
     <>
       <header>
@@ -11,7 +11,9 @@ const AppLayout: FC = ({ children }) => {
           <img src={cart} alt="Cart" />
         </div>
       </header>
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 };

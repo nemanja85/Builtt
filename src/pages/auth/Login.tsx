@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { object, string } from 'yup';
 
 type LoginRequest = {
@@ -22,6 +22,10 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
+  let [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.has('message'));
+  const message = searchParams.has('message') ? searchParams.get('message') : '';
+
   const navigate = useNavigate();
   const onSubmit = (data: LoginRequest) => {
     if (data.email === 'admin@admin.com' && data.password === 'admin12345') {
@@ -31,6 +35,11 @@ export default function Login() {
 
   return (
     <div className="flex flex-col justify-center min-h-full px-6 py-12 lg:px-8">
+      {message && (
+        <div className="relative w-[370px] p-5 mx-auto text-xl font-medium text-center text-white bg-red-500 rounded-xl">
+          {message}
+        </div>
+      )}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-xl font-bold leading-6 tracking-tight text-gray-900">Prijavi se na svoj nalog</h2>
       </div>
