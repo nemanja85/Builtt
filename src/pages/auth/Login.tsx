@@ -22,15 +22,20 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  let [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.has('message'));
+  let [searchParams, _] = useSearchParams();
+
   const message = searchParams.has('message') ? searchParams.get('message') : '';
 
   const navigate = useNavigate();
   const onSubmit = (data: LoginRequest) => {
     if (data.email === 'admin@admin.com' && data.password === 'admin12345') {
-      return navigate('/shop');
+      const user = {
+        id: crypto.randomUUID(),
+        email: data.email,
+      };
+      localStorage.setItem('user', JSON.stringify(user));
     }
+    return navigate('/shop');
   };
 
   return (

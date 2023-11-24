@@ -13,6 +13,14 @@ const authGuard = () => {
   return null;
 };
 
+const redirectIfLoggedIn = () => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    return redirect('/shop');
+  }
+  return null;
+};
+
 export const routes: RouteObject[] = [
   {
     element: <AppLayout />,
@@ -21,7 +29,7 @@ export const routes: RouteObject[] = [
       {
         path: '/shop',
         element: <Shop />,
-        loader: () => getProducts(),
+        loader: getProducts,
       },
       {
         path: '/cart',
@@ -32,5 +40,10 @@ export const routes: RouteObject[] = [
   {
     path: '/auth/login',
     element: <Login />,
+    loader: redirectIfLoggedIn,
+  },
+  {
+    path: '/',
+    loader: () => redirect('/auth/login'),
   },
 ];
