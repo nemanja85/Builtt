@@ -22,6 +22,9 @@ export const routes: RouteObject[] = [
   {
     path: '/cart',
     element: <Cart />,
+    loader: () => {
+      return getProducts();
+    },
   },
   {
     path: '/shop',

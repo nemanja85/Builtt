@@ -4,6 +4,7 @@ export type GetProductResponse = {
   title: string;
   currentPrice: number;
   oldPrice?: number;
+  weight?: number;
 };
 
 export const getProducts = () => {

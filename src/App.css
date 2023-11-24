@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#productItem img:hover + .cartInfo {
+  @apply !block;
+}
