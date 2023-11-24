@@ -4,7 +4,7 @@ import { productStore } from './product';
 
 export type AlertType = 'success' | 'danger';
 
-type Store = {};
+export type Store = {};
 
 export const store = createStore<Store>({
   products: productStore,
