@@ -66,9 +66,9 @@ const CartItem = ({ item }: Props) => {
           {item.currentPrice}
           <sup className="pl-2">RSD</sup>
         </p>
-        <p className="text-base leading-[18px] text-orange-600 line-through pt-2">
-          {item.oldPrice}
-          <sup className="pl-2">RSD</sup>
+        <p className="text-base leading-[18px] text-orange-600 pt-2">
+          <span className="line-through">{item.oldPrice}</span>
+          <sup className="pl-2 ">RSD</sup>
         </p>
       </div>
     </article>

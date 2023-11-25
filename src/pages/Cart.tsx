@@ -16,7 +16,7 @@ export default function Cart() {
                 <CartItem key={cartItem.id} item={cartItem} />
               ))}
             </div>
-            <div className="w-full p-4 mt-5 space-y-3 max-h-96 bg-ligthGray md:w-1/ md:mt-0">
+            <div className="w-full p-4 mt-5 space-y-3 max-h-96 bg-ligthGray md:w-1/ md:mt-0 md:ml-8 md:max-w-[300px] lg:max-w-[400px]">
               <h3 className="text-base font-bold">Tvoja narudžbina</h3>
               <div className="flex flex-col w-full space-y-3">
                 <div className="flex flex-row justify-between">
