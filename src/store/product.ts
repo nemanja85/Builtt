@@ -9,10 +9,8 @@ export type ProductState = {
   products: GetProductResponse[];
   productsInBasket: ProductCartItem[];
   count: number;
-  addToBasket: Action<ProductState, { id: number }>;
-  removeFromBasket: Action<ProductState, void>;
-  countIncrement: Action<ProductState, void>;
-  countDecrement: Action<ProductState, void>;
+  addToBasket: Action<ProductState, ProductCartItem>;
+  removeFromBasket: Action<ProductState, { id: number }>;
 };
 
 export const productStore: ProductState = {
@@ -20,18 +18,17 @@ export const productStore: ProductState = {
   productsInBasket: [],
   count: 0,
   addToBasket: action((state, payload) => {
-    if (state.count > 0) {
-      state.productsInBasket.push(payload.id);
+    const productInBasket = state.productsInBasket.find((item) => item.id === payload.id);
+    if (productInBasket) {
+      state.count += 1;
     }
+    state.productsInBasket.push(...[payload]);
   }),
-  removeFromBasket: action((state) => {
-    state.count = Math.max(state.count - 1, 0);
-    state.productsInBasket.pop();
-  }),
-  countIncrement: action((state) => {
-    state.count += 1;
-  }),
-  countDecrement: action((state) => {
+  removeFromBasket: action((state, payload) => {
+    const existingProduct = state.productsInBasket.find((item) => item.id === payload.id);
+    if (existingProduct) {
+      state.productsInBasket.pop();
+    }
     state.count = Math.max(state.count - 1, 0);
   }),
 };
