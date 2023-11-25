@@ -10,7 +10,8 @@ const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <StoreProvider store={store} />
+    <StoreProvider store={store}>
+      <RouterProvider router={router} />
+    </StoreProvider>
   </StrictMode>
 );

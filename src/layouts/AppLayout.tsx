@@ -3,16 +3,15 @@ import cart from '../../public/header/Cart.png';
 import logo from '../../public/header/Logo.png';
 
 const AppLayout = () => {
-  // const count = useStoreActions((store) => store.products.);
   return (
     <>
       <header>
         <div className="flex justify-between w-full px-8 py-4 bg-ligthGray">
           <img src={logo} alt="Logo" />
-          <div>
-            <span className="font-medium text-white font-base">0</span>
+          <button disabled className="flex">
+            <span className="relative font-medium text-black top-1 left-4 font-xs">0</span>
             <img src={cart} alt="Cart" />
-          </div>
+          </button>
         </div>
       </header>
       <main>

@@ -1,9 +1,12 @@
 import { useLoaderData } from 'react-router-dom';
 import { type GetProductResponse } from '../api/Product';
 import ProductItem from '../components/ProductItem';
+import { useStoreActions } from '../hooks';
 
 export default function Shop() {
   const products = useLoaderData() as GetProductResponse[];
+  const setProducts = useStoreActions((store) => store.products.setProducts);
+  setProducts(products);
 
   return (
     <div className="py-20 bg-white">

@@ -1,6 +1,6 @@
 import Light_Cart from '../../public/products/Light_Cart.png';
 import { type GetProductResponse } from '../api/Product';
-import { useStoreActions } from '../hooks';
+import { useStoreActions, useStoreState } from '../hooks';
 
 type Props = {
   item: GetProductResponse;
@@ -9,6 +9,9 @@ type Props = {
 const ProductItem = ({ item }: Props) => {
   const addToBasket = useStoreActions((store) => store.products.addToBasket);
   const removeFromBasket = useStoreActions((store) => store.products.removeFromBasket);
+  const quantity = useStoreState(
+    (store) => store.products.productsInBasket.find((x) => x.id === item.id)?.quantity ?? 0
+  );
   return (
     <article id="productItem" className="flex flex-col items-start justify-start mb-5 lg:mb-8">
       <div className="relative w-full">
@@ -19,7 +22,7 @@ const ProductItem = ({ item }: Props) => {
           className="aspect-[16/9] w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
         />
         <div className="absolute hidden cartInfo bottom-2 left-2">
-          <button className="inline-flex items-center justify-between h-10 px-3 mr-1 bg-white border border-black rounded-2xl">
+          <div className="inline-flex items-center justify-between h-10 px-3 mr-1 bg-white border border-black rounded-2xl">
             <button onClick={() => removeFromBasket(item.id)}>
               <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_64)">
@@ -37,7 +40,7 @@ const ProductItem = ({ item }: Props) => {
                 </defs>
               </svg>
             </button>
-            <span className="px-4">0</span>
+            <span className="px-4">{quantity}</span>
             <button onClick={() => addToBasket(item.id)}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_67)">
@@ -61,7 +64,7 @@ const ProductItem = ({ item }: Props) => {
                 </defs>
               </svg>
             </button>
-          </button>
+          </div>
           <button className="p-2 bg-black rounded-full">
             <img src={Light_Cart} alt="cart icon" />
           </button>

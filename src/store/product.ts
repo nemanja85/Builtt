@@ -10,6 +10,7 @@ export type ProductState = {
   productsInBasket: ProductCartItem[];
   addToBasket: Action<ProductState, number>;
   removeFromBasket: Action<ProductState, number>;
+  setProducts: Action<ProductState, GetProductResponse[]>;
 };
 
 export const productStore: ProductState = {
@@ -43,5 +44,8 @@ export const productStore: ProductState = {
         delete state.productsInBasket[idx];
       }
     }
+  }),
+  setProducts: action((state, payload) => {
+    state.products = payload;
   }),
 };
