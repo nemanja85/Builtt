@@ -1,34 +1,47 @@
-import { Action, action } from 'easy-peasy';
+import { action, type Action } from 'easy-peasy';
 import { type GetProductResponse } from '../api/Product';
 
 type ProductCartItem = GetProductResponse & {
-  quantity?: number;
+  quantity: number;
 };
 
 export type ProductState = {
   products: GetProductResponse[];
   productsInBasket: ProductCartItem[];
-  count: number;
-  addToBasket: Action<ProductState, ProductCartItem>;
-  removeFromBasket: Action<ProductState, { id: number }>;
+  addToBasket: Action<ProductState, number>;
+  removeFromBasket: Action<ProductState, number>;
 };
 
 export const productStore: ProductState = {
   products: [],
   productsInBasket: [],
-  count: 0,
   addToBasket: action((state, payload) => {
-    const productInBasket = state.productsInBasket.find((item) => item.id === payload.id);
-    if (productInBasket) {
-      state.count += 1;
+    const productInBasket = state.productsInBasket.find((x) => x.id === payload);
+
+    if (!productInBasket) {
+      const product = state.products.find((x) => x.id);
+
+      const productWithQuantity = {
+        ...product,
+        quantity: 1,
+      } as ProductCartItem;
+
+      state.productsInBasket.push(productWithQuantity);
+    } else {
+      const idx = state.productsInBasket.findIndex((x) => x.id === payload);
+      state.productsInBasket[idx].quantity++;
     }
-    state.productsInBasket.push(...[payload]);
   }),
   removeFromBasket: action((state, payload) => {
-    const existingProduct = state.productsInBasket.find((item) => item.id === payload.id);
+    const existingProduct = state.productsInBasket.find((item) => item.id === payload);
     if (existingProduct) {
-      state.productsInBasket.pop();
+      if (existingProduct.quantity > 0) {
+        existingProduct.quantity--;
+      }
+      if (existingProduct.quantity === 0) {
+        const idx = state.productsInBasket.findIndex((x) => x.id === existingProduct.id);
+        delete state.productsInBasket[idx];
+      }
     }
-    state.count = Math.max(state.count - 1, 0);
   }),
 };

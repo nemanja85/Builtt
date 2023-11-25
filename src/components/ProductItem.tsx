@@ -9,7 +9,6 @@ type Props = {
 const ProductItem = ({ item }: Props) => {
   const addToBasket = useStoreActions((store) => store.products.addToBasket);
   const removeFromBasket = useStoreActions((store) => store.products.removeFromBasket);
-  const count = useStoreActions((store) => store.products.count);
   return (
     <article id="productItem" className="flex flex-col items-start justify-start mb-5 lg:mb-8">
       <div className="relative w-full">
@@ -21,7 +20,7 @@ const ProductItem = ({ item }: Props) => {
         />
         <div className="absolute hidden cartInfo bottom-2 left-2">
           <button className="inline-flex items-center justify-between h-10 px-3 mr-1 bg-white border border-black rounded-2xl">
-            <button onClick={removeFromBasket}>
+            <button onClick={() => removeFromBasket(item.id)}>
               <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_64)">
                   <path
@@ -38,8 +37,8 @@ const ProductItem = ({ item }: Props) => {
                 </defs>
               </svg>
             </button>
-            <span className="px-4">{count}</span>
-            <button onClick={addToBasket}>
+            <span className="px-4">0</span>
+            <button onClick={() => addToBasket(item.id)}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_67)">
                   <path

@@ -1,12 +1,13 @@
 import { createStore } from 'easy-peasy';
-import { appStore } from './app';
-import { productStore } from './product';
+import { appStore, type AppState } from './app';
+import { productStore, type ProductState } from './product';
 
-export type AlertType = 'success' | 'danger';
-
-export type Store = {};
+export type Store = {
+  products: ProductState;
+  app: AppState;
+};
 
 export const store = createStore<Store>({
   products: productStore,
-  cart: appStore,
+  app: appStore,
 });
