@@ -41,7 +41,7 @@ export const productStore: ProductState = {
       }
       if (existingProduct.quantity === 0) {
         const idx = state.productsInBasket.findIndex((x) => x.id === existingProduct.id);
-        delete state.productsInBasket[idx];
+        state.productsInBasket.splice(idx, 1);
       }
     }
   }),
