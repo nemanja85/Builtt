@@ -10,7 +10,9 @@ export type ProductState = {
   productsInBasket: ProductCartItem[];
   addToBasket: Action<ProductState, number>;
   removeFromBasket: Action<ProductState, number>;
+  removeItem: Action<ProductState, number>;
   setProducts: Action<ProductState, GetProductResponse[]>;
+  productsTotal: Action<ProductState, number>;
 };
 
 export const productStore: ProductState = {
@@ -47,5 +49,16 @@ export const productStore: ProductState = {
   }),
   setProducts: action((state, payload) => {
     state.products = payload;
+  }),
+
+  productsTotal: action((state, payload) => {
+    state.productsInBasket.find((x) => (x.currentPrice = payload));
+  }),
+  removeItem: action((state, payload) => {
+    const existingProduct = state.productsInBasket.find((item) => item.id === payload);
+    if (existingProduct) {
+      const idx = state.productsInBasket.findIndex((x) => x.id === existingProduct.id);
+      state.productsInBasket.splice(idx, 1);
+    }
   }),
 };
