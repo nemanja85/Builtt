@@ -2,11 +2,13 @@ import Light_Cart from '../../public/products/Light_Cart.png';
 import { type GetProductResponse } from '../api/Product';
 import { useStoreActions, useStoreState } from '../hooks';
 
-type Props = {
+export type Props = {
   item: GetProductResponse;
 };
 
 const ProductItem = ({ item }: Props) => {
+  console.log(item.id);
+
   const addToBasket = useStoreActions((store) => store.products.addToBasket);
   const removeFromBasket = useStoreActions((store) => store.products.removeFromBasket);
   const quantity = useStoreState(

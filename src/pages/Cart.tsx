@@ -1,9 +1,9 @@
-import { useLoaderData } from 'react-router-dom';
-import { GetProductResponse } from '../api/Product';
 import CartItem from '../components/CartItem';
+import { useStoreState } from '../hooks';
 
 export default function Cart() {
-  const cartItems = useLoaderData() as GetProductResponse[];
+  const productsItems = useStoreState((store) => store.products.productsInBasket);
+  console.log(productsItems);
 
   return (
     <div className="py-20 bg-white">
@@ -12,7 +12,7 @@ export default function Cart() {
           <h2 className="font-bold leading-6 tracking-tight text-black">Tvoja korpa</h2>
           <div className="flex flex-col justify-between md:flex-row">
             <div className="flex flex-col justify-between w-full md:w-2/3 lg:max-w-3xl">
-              {cartItems.map((cartItem) => (
+              {productsItems.map((cartItem) => (
                 <CartItem key={cartItem.id} item={cartItem} />
               ))}
             </div>

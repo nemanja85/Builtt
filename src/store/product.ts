@@ -1,7 +1,7 @@
 import { action, type Action } from 'easy-peasy';
 import { type GetProductResponse } from '../api/Product';
 
-type ProductCartItem = GetProductResponse & {
+export type ProductCartItem = GetProductResponse & {
   quantity: number;
 };
 

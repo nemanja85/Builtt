@@ -1,7 +1,7 @@
-import { type GetProductResponse } from '../api/Product';
+import { type ProductCartItem } from '../store/product';
 
 type Props = {
-  item: GetProductResponse;
+  item: ProductCartItem;
 };
 
 const CartItem = ({ item }: Props) => {
@@ -34,7 +34,7 @@ const CartItem = ({ item }: Props) => {
                   </clipPath>
                 </defs>
               </svg>
-              <span className="px-4">1</span>
+              <span className="px-4">{item.quantity}</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_67)">
                   <path
