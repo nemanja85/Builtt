@@ -6,13 +6,9 @@ type Props = {
 };
 
 const CartItem = ({ item }: Props) => {
-  const total = useStoreActions((store) => {
-    store.products.productsTotal;
-  });
   const addToBasket = useStoreActions((store) => store.products.addToBasket);
   const removeFromBasket = useStoreActions((store) => store.products.removeFromBasket);
   const removeItem = useStoreActions((store) => store.products.removeItem);
-  console.log('Total: ', total);
 
   return (
     <article className="relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
@@ -78,11 +74,11 @@ const CartItem = ({ item }: Props) => {
       </div>
       <div className="mt-8 sm:mt-0">
         <p className="text-2xl leading-8 text-black">
-          {item.currentPrice}
+          {item.currentPrice * item.quantity}
           <sup className="pl-2">RSD</sup>
         </p>
         <p className="text-base leading-[18px] text-orange-600 pt-2">
-          <span className="line-through">{item.oldPrice}</span>
+          <span className="line-through">{item.oldPrice! * item.quantity}</span>
           <sup className="pl-2 ">RSD</sup>
         </p>
       </div>

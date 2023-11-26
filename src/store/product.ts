@@ -1,4 +1,4 @@
-import { action, type Action } from 'easy-peasy';
+import { action, computed, type Action, type Computed } from 'easy-peasy';
 import { type GetProductResponse } from '../api/Product';
 
 export type ProductCartItem = GetProductResponse & {
@@ -13,6 +13,7 @@ export type ProductState = {
   removeItem: Action<ProductState, number>;
   setProducts: Action<ProductState, GetProductResponse[]>;
   productsTotal: Action<ProductState, number>;
+  total: Computed<ProductState, number>;
 };
 
 export const productStore: ProductState = {
@@ -52,7 +53,8 @@ export const productStore: ProductState = {
   }),
 
   productsTotal: action((state, payload) => {
-    state.productsInBasket.find((x) => (x.currentPrice = payload));
+    const existingProduct = state.productsInBasket.find((item) => item.id === payload);
+    console.log(existingProduct);
   }),
   removeItem: action((state, payload) => {
     const existingProduct = state.productsInBasket.find((item) => item.id === payload);
@@ -61,4 +63,5 @@ export const productStore: ProductState = {
       state.productsInBasket.splice(idx, 1);
     }
   }),
+  total: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.currentPrice, 0)),
 };
