@@ -37,7 +37,7 @@ export default function Cart() {
                       <p className="text-base font-normal leading-7">Isporuka Daily Express</p>
                       <p className="mt-2.5 text-xs font-normal">Besplatna</p>
                     </div>
-                    <div className="flex flex-row justify-between">
+                    <div className="flex flex-row justify-between py-3">
                       <div className="space-y-1">
                         <p className="text-base font-normal leading-7">Ukupno za uplatu</p>
                         <p className="text-xs font-normal">Cena je sa uključenim PDV-om</p>
