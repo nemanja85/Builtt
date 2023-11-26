@@ -12,8 +12,9 @@ export type ProductState = {
   removeFromBasket: Action<ProductState, number>;
   removeItem: Action<ProductState, number>;
   setProducts: Action<ProductState, GetProductResponse[]>;
-  productsTotal: Action<ProductState, number>;
-  total: Computed<ProductState, number>;
+  subtotal: Computed<ProductState, number>;
+  discount: Computed<ProductState, number>;
+  grandTotal: Computed<ProductState, number>;
 };
 
 export const productStore: ProductState = {
@@ -23,7 +24,7 @@ export const productStore: ProductState = {
     const productInBasket = state.productsInBasket.find((x) => x.id === payload);
 
     if (!productInBasket) {
-      const product = state.products.find((x) => x.id);
+      const product = state.products.find((x) => x.id === payload);
 
       const productWithQuantity = {
         ...product,
@@ -52,10 +53,6 @@ export const productStore: ProductState = {
     state.products = payload;
   }),
 
-  productsTotal: action((state, payload) => {
-    const existingProduct = state.productsInBasket.find((item) => item.id === payload);
-    console.log(existingProduct);
-  }),
   removeItem: action((state, payload) => {
     const existingProduct = state.productsInBasket.find((item) => item.id === payload);
     if (existingProduct) {
@@ -63,5 +60,9 @@ export const productStore: ProductState = {
       state.productsInBasket.splice(idx, 1);
     }
   }),
-  total: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.currentPrice, 0)),
+  subtotal: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.currentPrice, 0)),
+  discount: computed((state) =>
+    state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * (cur.oldPrice - cur.currentPrice), 0)
+  ),
+  grandTotal: computed((state) => state.subtotal - state.discount),
 };

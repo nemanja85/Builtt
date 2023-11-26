@@ -7,8 +7,7 @@ export type Props = {
 };
 
 const ProductItem = ({ item }: Props) => {
-  const addToBasket = useStoreActions((store) => store.products.addToBasket);
-  const removeFromBasket = useStoreActions((store) => store.products.removeFromBasket);
+  const { addToBasket, removeFromBasket } = useStoreActions((store) => store.products);
   const quantity = useStoreState(
     (store) => store.products.productsInBasket.find((x) => x.id === item.id)?.quantity ?? 0
   );

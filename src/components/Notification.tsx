@@ -14,7 +14,7 @@ const mapColors = (type: AlertType) => {
   }
 };
 
-export const Notification = () => {
+const Notification = () => {
   const { message, notificationType } = useStoreState((store) => store.app);
 
   return (
@@ -92,3 +92,5 @@ export const Notification = () => {
     </div>
   );
 };
+
+export default Notification;

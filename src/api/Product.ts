@@ -3,7 +3,7 @@ export type GetProductResponse = {
   imageUrl: string;
   title: string;
   currentPrice: number;
-  oldPrice?: number;
+  oldPrice: number;
   weight?: number;
 };
 
@@ -35,6 +35,7 @@ export const getProducts = () => {
       imageUrl: '/products/Proizvod-3.png',
       title: 'Laneno ulje',
       currentPrice: 1100,
+      oldPrice: 1310,
     },
     {
       id: 5,
@@ -48,12 +49,14 @@ export const getProducts = () => {
       imageUrl: '/products/Proizvod-4.png',
       title: 'Kokosov protein',
       currentPrice: 1600,
+      oldPrice: 2100,
     },
     {
       id: 7,
       imageUrl: '/products/Proizvod-8.png',
       title: 'Naturela sa Rogačem i Agava Šećerom',
       currentPrice: 546,
+      oldPrice: 650,
     },
     {
       id: 8,
@@ -67,18 +70,21 @@ export const getProducts = () => {
       imageUrl: '/products/Proizvod-8.png',
       title: 'Naturela sa Rogačem i Agava Šećerom',
       currentPrice: 546,
+      oldPrice: 700,
     },
     {
       id: 10,
       imageUrl: '/products/Proizvod-9.png',
       title: ' Proteinske čokoladica sa šumskim voćem',
       currentPrice: 630,
+      oldPrice: 790,
     },
     {
       id: 11,
       imageUrl: '/products/Proizvod-3.png',
       title: 'Laneno ulje',
       currentPrice: 1100,
+      oldPrice: 1310,
     },
     {
       id: 12,
