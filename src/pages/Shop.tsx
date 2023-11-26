@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
-import { type GetProductResponse } from '../api/Product';
+import { type GetProductResponse } from '../api/products';
 import Notification from '../components/Notification';
 import ProductItem from '../components/ProductItem';
 import { useStoreActions } from '../hooks';

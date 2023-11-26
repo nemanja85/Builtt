@@ -1,5 +1,5 @@
 import { redirect, RouteObject } from 'react-router-dom';
-import { getProducts } from './api/Product';
+import { getProducts } from './api/products';
 import AppLayout from './layouts/AppLayout';
 import Login from './pages/auth/Login';
 import Cart from './pages/Cart';

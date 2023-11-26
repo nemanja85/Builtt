@@ -1,5 +1,5 @@
 import { action, computed, type Action, type Computed } from 'easy-peasy';
-import { type GetProductResponse } from '../api/Product';
+import { type GetProductResponse } from '../api/products';
 
 export type ProductCartItem = GetProductResponse & {
   quantity: number;
@@ -60,7 +60,7 @@ export const productStore: ProductState = {
       state.productsInBasket.splice(idx, 1);
     }
   }),
-  subtotal: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.currentPrice, 0)),
+  subtotal: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.oldPrice, 0)),
   discount: computed((state) =>
     state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * (cur.oldPrice - cur.currentPrice), 0)
   ),

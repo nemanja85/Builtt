@@ -1,5 +1,5 @@
 import Light_Cart from '../../public/products/Light_Cart.png';
-import { type GetProductResponse } from '../api/Product';
+import { type GetProductResponse } from '../api/products';
 import { useStoreActions, useStoreState } from '../hooks';
 
 export type Props = {
