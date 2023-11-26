@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
 import { type GetProductResponse } from '../api/Product';
+import Notification from '../components/Notification';
 import ProductItem from '../components/ProductItem';
 import { useStoreActions } from '../hooks';
 
@@ -10,6 +11,7 @@ export default function Shop() {
 
   return (
     <div className="py-20 bg-white">
+      <Notification />
       <div className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="max-w-2xl">
           <span className="font-bold leading-6 tracking-tight text-black">Svi proizvodi:</span>

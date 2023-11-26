@@ -11,6 +11,8 @@ const ProductItem = ({ item }: Props) => {
   const quantity = useStoreState(
     (store) => store.products.productsInBasket.find((x) => x.id === item.id)?.quantity ?? 0
   );
+  const { setNotification, dismissNotification } = useStoreActions((store) => store.app);
+
   return (
     <article id="productItem" className="flex flex-col items-start justify-start mb-5 lg:mb-8">
       <div className="relative w-full">
@@ -40,7 +42,13 @@ const ProductItem = ({ item }: Props) => {
               </svg>
             </button>
             <span className="px-4">{quantity}</span>
-            <button onClick={() => addToBasket(item.id)}>
+            <button
+              onClick={() => {
+                addToBasket(item.id);
+                setNotification({ message: 'Uspešno ste dodali proizvod u korpu', notificationType: 'success' });
+                setTimeout(() => dismissNotification(), 2000);
+              }}
+            >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clipPath="url(#clip0_8_67)">
                   <path

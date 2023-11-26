@@ -7,6 +7,7 @@ type Props = {
 
 const CartItem = ({ item }: Props) => {
   const { addToBasket, removeFromBasket, removeItem } = useStoreActions((store) => store.products);
+
   return (
     <article className="relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
       <div className="flex">

@@ -1,12 +1,15 @@
 import CartItem from '../components/CartItem';
-import { useStoreState } from '../hooks';
+import Notification from '../components/Notification';
+import { useStoreActions, useStoreState } from '../hooks';
 
 export default function Cart() {
   const productsItems = useStoreState((store) => store.products.productsInBasket);
   const { subtotal, discount, grandTotal } = useStoreState((store) => store.products);
+  const { setNotification, dismissNotification } = useStoreActions((store) => store.app);
 
   return (
     <div className="py-20 bg-white">
+      <Notification />
       <div className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="max-w-2xl md:max-w-7xl">
           <h2 className="font-bold leading-6 tracking-tight text-black">Tvoja korpa</h2>
@@ -49,6 +52,10 @@ export default function Cart() {
                   </div>
                 </div>
                 <button
+                  onClick={() => {
+                    setNotification({ message: 'Uspesno ste izvrsili kupovinu', notificationType: 'success' });
+                    setTimeout(() => dismissNotification(), 2000);
+                  }}
                   type="submit"
                   className="flex w-full justify-center items-center h-11 rounded-2xl  text-white bg-black py-1.5 text-lg leading-4 !mt-3 !mb-6 hover:text-black hover:bg-white hover:border hover:border-black"
                 >
