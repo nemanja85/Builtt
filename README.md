@@ -17,36 +17,12 @@ git clone git@github.com:nemanja85/Builtt.git
 cd Builtt
 ```
 
-### Project was made in Typescript
+### In this project I've used Vite, TailwindCSS, React TypeScript, React Router V6, React FormHook, Easy Peasy, Yup and Playwright
 
 ## Install
 
 ```sh
 yarn install
-```
-
-```sh
-yarn add vite @vitejs/plugin-react-refresh
-```
-
-```sh
-yarn add -D tailwindcss postcss autoprefixer
-```
-
-```sh
-yarn add easy-peasy
-```
-
-```sh
-yarn add react-router-dom
-```
-
-```sh
-yarn add @hookform/resolvers yup
-```
-
-```sh
-yarn create playwright
 ```
 
 
