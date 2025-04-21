@@ -7,32 +7,40 @@
   </a>
 </p>
 
+### In this project I've used Vite, TailwindCSS, React TypeScript, React Router V6, React FormHook, Easy Peasy, Yup and Playwright
 
-## Clone the project
+
+## 1.Clone the project
 
 ```sh
 git clone git@github.com:nemanja85/Builtt.git
 ```
+
+## 2. Navigate to the project directory
+
 ```sh
 cd Builtt
 ```
 
-### In this project I've used Vite, TailwindCSS, React TypeScript, React Router V6, React FormHook, Easy Peasy, Yup and Playwright
 
-## Install
+
+## 3. Install the required dependencies
 
 ```sh
 yarn install
 ```
 
 
-## Getting Started
+# Running the Project
+### To start the project, use the following command:
 
 ```sh
 yarn dev
 ```
 
-## Run tests
+
+# Running the Tests
+### To start the tests, use the following command:
 
 ```sh
 yarn playwright test
