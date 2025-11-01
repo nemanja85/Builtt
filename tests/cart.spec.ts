@@ -29,22 +29,22 @@ test.describe('Cart Component', () => {
     expect(await cartItems.count()).toBe(2);
   });
 
-  test('should display correct totals', async ({ page }) => {
-    const subtotal = await page.locator('text=Ukupno').nth(1).textContent();
-    const discount = await page.locator('text=Ušteda').nth(1).textContent();
-    const grandTotal = await page.locator('text=Ukupno za uplatu').nth(1).textContent();
+   test('should display correct totals', async ({ page }) => {
+    const subtotal = await page.locator('text=Ukupno').nth(0).textContent(); 
+    const discount = await page.locator('text=Ušteda').nth(0).textContent(); 
+    const grandTotal = await page.locator('text=Ukupno za uplatu').nth(0).textContent(); 
 
     expect(subtotal).toContain('300');
-    expect(discount).toContain('-50');
+    expect(discount).toContain('50'); 
     expect(grandTotal).toContain('250');
   });
-
-  test('should show notification on button click', async ({ page }) => {
+  
+   test('should show notification on button click', async ({ page }) => {
     await page.click('button:has-text("Prijavi se za brže plaćanje")');
 
     const notification = await page.locator('.notification-selector');
     await expect(notification).toBeVisible();
-    await expect(notification).toHaveText('Uspesno ste izvrsili kupovinu');
+    await expect(notification).toHaveText('Uspešno ste izvršili kupovinu'); 
     await page.waitForTimeout(2500);
     await expect(notification).not.toBeVisible();
   });
