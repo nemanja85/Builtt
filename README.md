@@ -7,7 +7,7 @@
   </a>
 </p>
 
-### In this project I've used Vite, TailwindCSS, React TypeScript, React Router V6, React FormHook, Easy Peasy, Yup and Playwright
+### In this project I've used Vite, TailwindCSS, React TypeScript, React Router V6, React HookForm, Easy Peasy, Yup and Playwright
 
 
 ## 1.Clone the project
