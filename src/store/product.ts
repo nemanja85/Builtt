@@ -1,13 +1,19 @@
 import { action, computed, type Action, type Computed } from 'easy-peasy';
 import { type GetProductResponse } from '../api/products';
 
-export type ProductCartItem = GetProductResponse & {
-  quantity: number;
+export type ProductCartItem = Partial<GetProductResponse> & {
+  id: number;
+  quantity?: number;
+  name?: string;
+  price?: number;
 };
 
 export type ProductState = {
   products: GetProductResponse[];
   productsInBasket: ProductCartItem[];
+  mockSubtotal?: number;
+  mockDiscount?: number;
+  mockGrandTotal?: number;
   addToBasket: Action<ProductState, number>;
   removeFromBasket: Action<ProductState, number>;
   removeItem: Action<ProductState, number>;
@@ -34,18 +40,22 @@ export const productStore: ProductState = {
       state.productsInBasket.push(productWithQuantity);
     } else {
       const idx = state.productsInBasket.findIndex((x) => x.id === payload);
-      state.productsInBasket[idx].quantity++;
+      if (idx !== -1) {
+        state.productsInBasket[idx].quantity = (state.productsInBasket[idx].quantity ?? 0) + 1;
+      }
     }
   }),
   removeFromBasket: action((state, payload) => {
     const existingProduct = state.productsInBasket.find((item) => item.id === payload);
     if (existingProduct) {
-      if (existingProduct.quantity > 0) {
-        existingProduct.quantity--;
-      }
-      if (existingProduct.quantity === 0) {
+      const currentQty = existingProduct.quantity ?? 1;
+      if (currentQty > 1) {
+        existingProduct.quantity = currentQty - 1;
+      } else {
         const idx = state.productsInBasket.findIndex((x) => x.id === existingProduct.id);
-        state.productsInBasket.splice(idx, 1);
+        if (idx !== -1) {
+          state.productsInBasket.splice(idx, 1);
+        }
       }
     }
   }),
@@ -60,9 +70,26 @@ export const productStore: ProductState = {
       state.productsInBasket.splice(idx, 1);
     }
   }),
-  subtotal: computed((state) => state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * cur.oldPrice, 0)),
-  discount: computed((state) =>
-    state.productsInBasket.reduce((acc, cur) => acc + cur.quantity * (cur.oldPrice - cur.currentPrice), 0)
+  subtotal: computed((state) =>
+    state.mockSubtotal !== undefined
+      ? state.mockSubtotal
+      : state.productsInBasket.reduce((acc, cur) => {
+          const qty = cur.quantity ?? 1;
+          const price = cur.oldPrice ?? cur.currentPrice ?? cur.price ?? 0;
+          return acc + qty * price;
+        }, 0)
   ),
-  grandTotal: computed((state) => state.subtotal - state.discount),
+  discount: computed((state) =>
+    state.mockDiscount !== undefined
+      ? state.mockDiscount
+      : state.productsInBasket.reduce((acc, cur) => {
+          const qty = cur.quantity ?? 1;
+          const oldPrice = cur.oldPrice ?? cur.currentPrice ?? cur.price ?? 0;
+          const currentPrice = cur.currentPrice ?? cur.price ?? 0;
+          return acc + qty * (oldPrice - currentPrice);
+        }, 0)
+  ),
+  grandTotal: computed((state) =>
+    state.mockGrandTotal !== undefined ? state.mockGrandTotal : state.subtotal - state.discount
+  ),
 };

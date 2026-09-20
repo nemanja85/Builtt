@@ -1,4 +1,3 @@
-import Light_Cart from '../../public/products/Light_Cart.png';
 import { type GetProductResponse } from '../api/products';
 import { useStoreActions, useStoreState } from '../hooks';
 
@@ -73,7 +72,7 @@ const ProductItem = ({ item }: Props) => {
             </button>
           </div>
           <button className="p-2 bg-black rounded-full">
-            <img src={Light_Cart} alt="cart icon" />
+            <img src="/products/Light_Cart.png" alt="cart icon" />
           </button>
         </div>
       </div>

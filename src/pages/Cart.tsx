@@ -53,7 +53,7 @@ export default function Cart() {
                 </div>
                 <button
                   onClick={() => {
-                    setNotification({ message: 'Uspesno ste izvrsili kupovinu', notificationType: 'success' });
+                    setNotification({ message: 'Uspešno ste izvršili kupovinu', notificationType: 'success' });
                     setTimeout(() => dismissNotification(), 2000);
                   }}
                   type="submit"

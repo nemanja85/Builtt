@@ -8,17 +8,24 @@ type Props = {
 const CartItem = ({ item }: Props) => {
   const { addToBasket, removeFromBasket, removeItem } = useStoreActions((store) => store.products);
 
+  const title = item.title ?? item.name ?? '';
+  const quantity = item.quantity ?? 1;
+  const currentPrice = item.currentPrice ?? item.price ?? 0;
+  const oldPrice = item.oldPrice ?? currentPrice;
+
   return (
-    <article className="relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
+    <article className="cart-item-selector relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
       <div className="flex">
-        <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-          <img src={item.imageUrl} alt={item.title} className="object-cover w-full h-full bg-gray-50" />
-          <div className="absolute inset-0 rounded-2xl" />
-        </div>
-        <div className="flex flex-col justify-between pl-8">
+        {item.imageUrl && (
+          <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+            <img src={item.imageUrl} alt={title} className="object-cover w-full h-full bg-gray-50" />
+            <div className="absolute inset-0 rounded-2xl" />
+          </div>
+        )}
+        <div className={`flex flex-col justify-between ${item.imageUrl ? 'pl-8' : ''}`}>
           <div className="relative max-w-xl group">
-            <h3 className="text-lg font-semibold leading-6 text-black">{item.title}</h3>
-            <p className="mt-1 text-sm leading-6 text-gray-600">{item.weight}</p>
+            <h3 className="text-lg font-semibold leading-6 text-black">{title}</h3>
+            {item.weight && <p className="mt-1 text-sm leading-6 text-gray-600">{item.weight}</p>}
           </div>
           <div className="relative max-w-xl group">
             <div className="inline-flex items-center justify-between h-10 px-3 mr-4 bg-white border border-black rounded-2xl">
@@ -39,7 +46,7 @@ const CartItem = ({ item }: Props) => {
                   </defs>
                 </svg>
               </button>
-              <span className="px-4">{item.quantity}</span>
+              <span className="px-4">{quantity}</span>
               <button onClick={() => addToBasket(item.id)}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_8_67)">
@@ -72,13 +79,15 @@ const CartItem = ({ item }: Props) => {
       </div>
       <div className="mt-8 sm:mt-0">
         <p className="text-2xl leading-8 text-black">
-          {item.currentPrice * item.quantity}
+          {currentPrice * quantity}
           <sup className="pl-2">RSD</sup>
         </p>
-        <p className="text-base leading-[18px] text-orange-600 pt-2">
-          <span className="line-through">{item.oldPrice! * item.quantity}</span>
-          <sup className="pl-2 ">RSD</sup>
-        </p>
+        {oldPrice !== currentPrice && (
+          <p className="text-base leading-[18px] text-orange-600 pt-2">
+            <span className="line-through">{oldPrice * quantity}</span>
+            <sup className="pl-2 ">RSD</sup>
+          </p>
+        )}
       </div>
     </article>
   );

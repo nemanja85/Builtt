@@ -22,7 +22,7 @@ const Notification = () => {
       {message !== null && (
         <div className="absolute top-20 flex justify-center w-[98%] lg:justify-end lg:self-end">
           <div
-            className={`w-96 flex items-center justify-center p-4 text-sm font-semibold rounded-lg shadow-md placeholder:flex gap-x-1 focus:outline-none  ${mapColors(
+            className={`notification-selector w-96 flex items-center justify-center p-4 text-sm font-semibold rounded-lg shadow-md placeholder:flex gap-x-1 focus:outline-none  ${mapColors(
               notificationType
             )}`}
           >

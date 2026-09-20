@@ -1,6 +1,26 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Cart Component', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem('user', JSON.stringify({ email: 'admin@admin.com' }));
+      window.localStorage.setItem(
+        'mockStore',
+        JSON.stringify({
+          products: {
+            productsInBasket: [
+              { id: 1, name: 'Product 1', price: 100 },
+              { id: 2, name: 'Product 2', price: 200 },
+            ],
+            subtotal: 300,
+            discount: 50,
+            grandTotal: 250,
+          },
+        })
+      );
+    });
+    await page.goto('http://localhost:5173/cart');
+  });
 
   test('should display the cart title', async ({ page }) => {
     const title = await page.locator('h2').textContent();
@@ -30,9 +50,9 @@ test.describe('Cart Component', () => {
   });
 
    test('should display correct totals', async ({ page }) => {
-    const subtotal = await page.locator('text=Ukupno').nth(0).textContent(); 
-    const discount = await page.locator('text=Ušteda').nth(0).textContent(); 
-    const grandTotal = await page.locator('text=Ukupno za uplatu').nth(0).textContent(); 
+    const subtotal = await page.getByText('Ukupno', { exact: true }).locator('..').textContent(); 
+    const discount = await page.getByText('Ušteda', { exact: true }).locator('..').textContent(); 
+    const grandTotal = await page.getByText('Ukupno za uplatu', { exact: true }).locator('../..').textContent(); 
 
     expect(subtotal).toContain('300');
     expect(discount).toContain('50'); 

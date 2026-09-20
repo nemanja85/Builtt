@@ -22,7 +22,7 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  let [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const message = searchParams.has('message') ? searchParams.get('message') : '';
 
