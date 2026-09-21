@@ -71,7 +71,7 @@ const ProductItem = ({ item }: Props) => {
               </svg>
             </button>
           </div>
-          <button className="p-2 bg-black rounded-full">
+          <button className="p-2 bg-dark-blue rounded-full">
             <img src="/products/Light_Cart.png" alt="cart icon" />
           </button>
         </div>

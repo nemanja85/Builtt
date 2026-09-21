@@ -12,7 +12,7 @@ const AppLayout = () => {
   return (
     <>
       <header>
-        <div className="flex justify-between w-full px-8 py-4 bg-ligthGray">
+        <div className="flex justify-between w-full px-8 py-4 bg-ligth-gray">
           <img src="/header/Logo.png" alt="Logo" />
           <button onClick={goToCart} disabled={productsLength === 0} className="flex">
             <span className="relative font-medium text-black top-2 left-5 text-[14px]">{productsLength}</span>

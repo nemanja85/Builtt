@@ -2,11 +2,9 @@
 
 @theme {
   --color-dark-blue: #012734;
-  --color-darkBlue: #012734;
   --color-middle-gray: #757575;
-  --color-middleGray: #757575;
   --color-ligth-gray: #f0f0f0;
-  --color-ligthGray: #f0f0f0;
+
 }
 
 #productItem img:hover + .cartInfo,
