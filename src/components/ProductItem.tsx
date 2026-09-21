@@ -19,7 +19,7 @@ const ProductItem = ({ item }: Props) => {
           src={item.imageUrl}
           alt={item.title}
           loading="lazy"
-          className="aspect-[16/9] w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+          className="aspect-16/9 w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
         />
         <div className="absolute hidden cartInfo bottom-2 left-2">
           <div className="inline-flex items-center justify-between h-10 px-3 mr-1 bg-white border border-black rounded-2xl">
@@ -76,7 +76,7 @@ const ProductItem = ({ item }: Props) => {
           </button>
         </div>
       </div>
-      <div className="max-w-xl">
+      <div className="w-full text-center">
         <div className="relative group">
           <h3 className="mt-3 text-xl font-semibold leading-6 tracking-tight text-black">
             <span className="absolute inset-0"></span>

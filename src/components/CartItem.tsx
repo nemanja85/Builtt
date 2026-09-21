@@ -17,7 +17,7 @@ const CartItem = ({ item }: Props) => {
     <article className="cart-item-selector relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
       <div className="flex">
         {item.imageUrl && (
-          <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+          <div className="relative aspect-16/9 sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
             <img src={item.imageUrl} alt={title} className="object-cover w-full h-full bg-gray-50" />
             <div className="absolute inset-0 rounded-2xl" />
           </div>
