@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useStoreActions } from '../hooks';
 import { type ProductCartItem } from '../store/product';
 
@@ -5,7 +6,10 @@ type Props = {
   item: ProductCartItem;
 };
 
-const CartItem = ({ item }: Props) => {
+const formatPrice = (amount: number) =>
+    new Intl.NumberFormat('sr-RS').format(amount);
+
+const CartItem = memo(({ item }: Props) => {
   const { addToBasket, removeFromBasket, removeItem } = useStoreActions((store) => store.products);
 
   const title = item.title ?? item.name ?? '';
@@ -17,10 +21,14 @@ const CartItem = ({ item }: Props) => {
     <article className="cart-item-selector relative flex flex-col justify-between pb-4 mt-8 border-b isolate border-b-gray-500 sm:flex-row">
       <div className="flex">
         {item.imageUrl && (
-          <div className="relative aspect-16/9 sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
-            <img src={item.imageUrl} alt={title} className="object-cover w-full h-full bg-gray-50" />
-            <div className="absolute inset-0 rounded-2xl" />
-          </div>
+            <div className="relative overflow-hidden rounded-xl bg-gray-100 aspect-square w-full sm:w-32 lg:w-40 shrink-0">
+              <img
+                  src={item.imageUrl}
+                  alt={title}
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+              />
+            </div>
         )}
         <div className={`flex flex-col justify-between ${item.imageUrl ? 'pl-8' : ''}`}>
           <div className="relative max-w-xl group">
@@ -29,21 +37,14 @@ const CartItem = ({ item }: Props) => {
           </div>
           <div className="relative max-w-xl group">
             <div className="inline-flex items-center justify-between h-10 px-3 mr-4 bg-white border border-black rounded-2xl">
-              <button onClick={() => removeFromBasket(item.id)}>
-                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clipPath="url(#clip0_8_64)">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M14.6304 8.66502H0V7.33499H14.6304V8.66502Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_8_64">
-                      <rect width="14.6304" height="14.6304" fill="white" transform="translate(0 0.684814)" />
-                    </clipPath>
-                  </defs>
+              <button
+                  type="button"
+                  onClick={() => removeFromBasket(item.id)}
+                  aria-label="Smanji količinu"
+                  className="flex items-center justify-center w-8 h-8 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors"
+              >
+                <svg width="14" height="2" viewBox="0 0 14 2" fill="currentColor" aria-hidden="true">
+                  <rect width="14" height="2" rx="1" />
                 </svg>
               </button>
               <span className="px-4">{quantity}</span>
@@ -71,26 +72,30 @@ const CartItem = ({ item }: Props) => {
                 </svg>
               </button>
             </div>
-            <button onClick={() => removeItem(item.id)} className="text-base font-normal leading-7 underline">
+            <button
+                type="button"
+                onClick={() => removeItem(item.id)}
+                className="text-sm font-medium text-gray-500 underline underline-offset-4 hover:text-red-600 transition-colors focus:outline-none"
+            >
               Ukloni
             </button>
           </div>
         </div>
       </div>
-      <div className="mt-8 sm:mt-0">
-        <p className="text-2xl leading-8 text-black">
-          {currentPrice * quantity}
-          <sup className="pl-2">RSD</sup>
+      <div className="mt-4 sm:mt-0 text-left sm:text-right">
+        <p className="text-2xl font-bold tracking-tight text-gray-900">
+          {formatPrice(currentPrice * quantity)}
+          <span className="ml-1.5 text-sm font-normal text-gray-500">RSD</span>
         </p>
         {oldPrice !== currentPrice && (
-          <p className="text-base leading-[18px] text-orange-600 pt-2">
-            <span className="line-through">{oldPrice * quantity}</span>
-            <sup className="pl-2 ">RSD</sup>
-          </p>
+            <p className="mt-1 text-sm font-medium text-orange-600">
+              <span className="line-through">{formatPrice(oldPrice * quantity)}</span>
+              <span className="ml-1 text-xs">RSD</span>
+            </p>
         )}
       </div>
     </article>
   );
-};
+});
 
 export default CartItem;
