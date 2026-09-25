@@ -2,7 +2,7 @@ import { action, type Action } from 'easy-peasy';
 
 export type AlertType = 'success' | 'danger' | 'info' | 'warning';
 
-type NotificationPayload = {
+export type NotificationPayload = {
   message: string;
   notificationType: AlertType;
 };
@@ -22,7 +22,9 @@ export const appStore: AppState = {
     state.message = payload.message;
     state.notificationType = payload.notificationType;
   }),
+
   dismissNotification: action((state) => {
     state.message = null;
+    state.notificationType = 'success';
   }),
 };

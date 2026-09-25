@@ -7,55 +7,48 @@ export type Store = {
   app: AppState;
 };
 
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends (infer U)[]
-    ? DeepPartial<U>[]
-    : T[P] extends object | undefined
-    ? DeepPartial<T[P]>
-    : T[P];
+type InitialStoreState = {
+  products?: Partial<Pick<ProductState,
+      'products' | 'productsInBasket' | 'mockSubtotal' | 'mockDiscount' | 'mockGrandTotal'
+  >>;
+  app?: Partial<Pick<AppState, 'message' | 'notificationType'>>;
 };
 
-const getInitialState = (): DeepPartial<Store> | undefined => {
+const STORAGE_KEY = 'mockStore';
+
+const loadMockStore = (): InitialStoreState | undefined => {
   if (typeof window === 'undefined') return undefined;
+
   try {
-    const mockStore = localStorage.getItem('mockStore');
-    if (mockStore) {
-      const parsed = JSON.parse(mockStore);
-      const initialProducts: Partial<ProductState> = {};
-      if (parsed.products) {
-        if (parsed.products.productsInBasket) {
-          initialProducts.productsInBasket = parsed.products.productsInBasket;
-        }
-        if (parsed.products.products) {
-          initialProducts.products = parsed.products.products;
-        }
-        if (parsed.products.subtotal !== undefined) {
-          initialProducts.mockSubtotal = parsed.products.subtotal;
-        }
-        if (parsed.products.discount !== undefined) {
-          initialProducts.mockDiscount = parsed.products.discount;
-        }
-        if (parsed.products.grandTotal !== undefined) {
-          initialProducts.mockGrandTotal = parsed.products.grandTotal;
-        }
-      }
-      return {
-        products: initialProducts as DeepPartial<ProductState>,
-        app: parsed.app,
-      };
-    }
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return undefined;
+
+    const parsed = JSON.parse(raw) as InitialStoreState;
+
+    return {
+      products: parsed.products
+          ? {
+            products: parsed.products.products,
+            productsInBasket: parsed.products.productsInBasket,
+            mockSubtotal: parsed.products.mockSubtotal,
+            mockDiscount: parsed.products.mockDiscount,
+            mockGrandTotal: parsed.products.mockGrandTotal,
+          }
+          : undefined,
+      app: parsed.app,
+    };
   } catch (e) {
-    console.error('Failed to parse mockStore from localStorage', e);
+    console.error(`Failed to parse "${STORAGE_KEY}" from localStorage`, e);
+    return undefined;
   }
-  return undefined;
 };
 
-export const store = createStore<Store, DeepPartial<Store>>(
-  {
-    products: productStore,
-    app: appStore,
-  },
-  {
-    initialState: getInitialState(),
-  }
+export const store = createStore<Store, InitialStoreState>(
+    {
+      products: productStore,
+      app: appStore,
+    },
+    {
+      initialState: loadMockStore(),
+    }
 );
